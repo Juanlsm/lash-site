@@ -1,57 +1,152 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <title>Luaa Lash Designer</title>
-    <link rel="stylesheet" href="/static/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Luua Lash Designer</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f5f5f5;
+    text-align: center;
+}
+
+/* TÍTULO */
+h1 {
+    margin-top: 30px;
+}
+
+/* CONTAINER CENTRAL */
+.container {
+    width: 800px;
+    margin: 40px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+/* CARROSSEL */
+.carrossel {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.4s ease;
+}
+
+/* CARD */
+.card {
+    min-width: 250px;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.card h3 {
+    font-size: 16px;
+}
+
+.card p {
+    color: #c8a27a;
+    font-weight: bold;
+}
+
+.card button {
+    background: #c8a27a;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* SETAS */
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #c8a27a;
+    color: white;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.left {
+    left: -10px;
+}
+
+.right {
+    right: -10px;
+}
+</style>
 </head>
 
 <body>
 
-<!-- BOTÃO ADMIN -->
-<a href="/admin">
-    <button class="btn-admin">Área da Lash Designer</button>
-</a>
+<h1>Luua Lash Designer</h1>
 
-<h1>Luaa Lash Designer</h1>
+<div class="container">
 
-<!-- CARROSSEL -->
-<div class="carousel">
+<button class="arrow left" onclick="voltar()">‹</button>
 
-    <button id="prev">◀</button>
+<div class="carrossel" id="carrossel">
 
-    <div class="carousel-container">
-        <div class="carousel-track" id="track">
+{% for s in servicos %}
+<div class="card">
+    <img src="{{ s[3] }}">
+    <h3>{{ s[1] }}</h3>
+    <p>R$ {{ s[2] }}</p>
 
-            {% for s in servicos %}
-            <div class="card">
-
-                <!-- IMAGEM -->
-                <img src="/static/imagens/{{ s[3] }}">
-
-                <!-- NOME -->
-                <h3>{{ s[1] }}</h3>
-
-                <!-- PREÇO -->
-                <p class="preco">R$ {{ s[2] }}</p>
-
-                <!-- BOTÃO AGENDAR -->
-                <a href="/agendamento?servico={{ s[1] }}">
-                    <button class="btn-agendar">Agendar</button>
-                </a>
-
-            </div>
-            {% endfor %}
-
-        </div>
-    </div>
-
-    <button id="next">▶</button>
+    <a href="/agendamento?servico={{ s[1] }}">
+        <button>Agendar</button>
+    </a>
+</div>
+{% endfor %}
 
 </div>
 
-<!-- SCRIPT DO CARROSSEL -->
-<script src="/static/carousel.js"></script>
+<button class="arrow right" onclick="avancar()">›</button>
+
+</div>
+
+<script>
+let index = 0;
+
+function avancar() {
+    const carrossel = document.getElementById("carrossel");
+    const total = carrossel.children.length;
+
+    if (index < total - 3) {
+        index++;
+    }
+
+    atualizar();
+}
+
+function voltar() {
+    if (index > 0) {
+        index--;
+    }
+
+    atualizar();
+}
+
+function atualizar() {
+    const carrossel = document.getElementById("carrossel");
+    const cardWidth = carrossel.children[0].offsetWidth + 20;
+    carrossel.style.transform = `translateX(-${index * cardWidth}px)`;
+}
+</script>
 
 </body>
 </html>
