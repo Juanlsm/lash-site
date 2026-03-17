@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Luaa Lash Designer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<!-- BOTÃO ADMIN -->
+<a href="/admin">
+    <button class="btn-admin">Área da Lash Designer</button>
+</a>
+
+<h1>Luaa Lash Designer</h1>
+
+<!-- CARROSSEL -->
+<div class="carousel">
+
+    <button id="prev">◀</button>
+
+    <div class="carousel-container">
+        <div class="carousel-track" id="track">
+
+            {% for s in servicos %}
+            <div class="card">
+
+                <!-- IMAGEM -->
+                <img src="/static/imagens/{{ s[3] }}">
+
+                <!-- NOME -->
+                <h3>{{ s[1] }}</h3>
+
+                <!-- PREÇO -->
+                <p class="preco">R$ {{ s[2] }}</p>
+
+                <!-- BOTÃO AGENDAR -->
+                <a href="/agendamento?servico={{ s[1] }}">
+                    <button class="btn-agendar">Agendar</button>
+                </a>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <button id="next">▶</button>
+
+</div>
+
+<!-- SCRIPT DO CARROSSEL -->
+<script src="/static/carousel.js"></script>
+
+</body>
+</html>

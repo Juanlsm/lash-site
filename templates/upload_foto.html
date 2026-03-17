@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Enviar Foto</title>
+</head>
+
+<body>
+
+<h2>Enviar foto para serviço</h2>
+
+<form action="/admin/foto" method="post" enctype="multipart/form-data">
+
+<label>Escolher serviço</label>
+<br>
+
+<select name="servico_id">
+
+{% for s in servicos %}
+
+<option value="{{s.id}}">
+{{s.nome}}
+</option>
+
+{% endfor %}
+
+</select>
+
+<br><br>
+
+<label>Selecionar foto</label>
+<br>
+
+<input type="file" name="foto">
+
+<br><br>
+
+<button type="submit">Enviar Foto</button>
+
+</form>
+
+</body>
+
+</html>

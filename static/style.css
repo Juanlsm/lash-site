@@ -1,0 +1,280 @@
+/* RESET */
+body{
+    overflow-x: hidden;
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f5f5f5;
+    text-align:center;
+}
+
+/* TÍTULOS */
+h1{
+    margin-top:30px;
+}
+
+h2{
+    margin:10px 0;
+}
+
+/* ========================= */
+/* CARROSSEL */
+/* ========================= */
+
+.carousel{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-top:40px;
+}
+
+.carousel-container{
+    width:750px;
+    overflow:hidden;
+    margin:auto;
+}
+
+.carousel-track{
+    display:flex;
+    gap:20px;
+    transition:transform 0.5s ease;
+}
+
+/* BOTÕES DO CARROSSEL */
+#prev, #next{
+    background:#c49a6c;
+    border:none;
+    color:white;
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:18px;
+    z-index: 10;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
+
+/* POSIÇÃO */
+.carousel{
+    position:relative;
+}
+
+#prev{
+    position:absolute;
+    left:10px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+#next{
+    position:absolute;
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+/* HOVER */
+#prev:hover, #next:hover{
+    background:#a87e4f;
+    transform:translateY(-50%) scale(1.1);
+}
+/* ========================= */
+/* CARDS */
+/* ========================= */
+
+.card{
+    min-width:220px;
+    background:white;
+    border-radius:12px;
+    padding:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.15);
+}
+
+.card img{
+    width:100%;
+    border-radius:10px;
+    height:200px;
+    object-fit:cover;
+}
+
+/* PREÇO */
+.preco{
+    font-weight:bold;
+    color:#c49a6c;
+}
+
+/* BOTÃO PADRÃO */
+.btn-agendar{
+    background:#c49a6c;
+    border:none;
+    padding:10px 15px;
+    border-radius:8px;
+    color:white;
+    cursor:pointer;
+    margin-top:10px;
+    transition:0.3s;
+}
+
+.btn-agendar:hover{
+    background:#a87e4f;
+    transform:scale(1.05);
+}
+
+/* ========================= */
+/* TELA DE AGENDAMENTO */
+/* ========================= */
+
+.container{
+    width:350px;
+    margin:80px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+form{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+input, select{
+    padding:12px;
+    border-radius:8px;
+    border:1px solid #ddd;
+    font-size:14px;
+}
+
+/* ========================= */
+/* RESPONSIVO (CELULAR) */
+/* ========================= */
+
+@media (max-width: 768px){
+
+    .carousel-container{
+        width:300px;
+    }
+
+    .card{
+        min-width:180px;
+    }
+
+    .container{
+        width:90%;
+    }
+
+}
+.carousel{
+    max-width:800px;
+    margin:auto;
+    position:relative;
+}
+.btn-admin {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #c8a27a;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-admin:hover {
+    background: #a6825f;
+}
+
+.container {
+    max-width: 500px;
+    margin: auto;
+    text-align: center;
+}
+
+.card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.btn-voltar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #c8a27a;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.btn-voltar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #c8a27a;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-excluir {
+    margin-top: 10px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-excluir:hover {
+    background: #c0392b;
+}
+.btn-voltar {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: #c8a27a;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-excluir {
+    margin-top: 10px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-excluir:hover {
+    background: #c0392b;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.card-stat {
+    background: #c8a27a;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}

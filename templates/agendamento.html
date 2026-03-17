@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Agendar horário</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<!-- BOTÃO VOLTAR -->
+<button onclick="window.history.back()" class="btn-voltar">
+    ← Voltar
+</button>
+
+<div class="container">
+    <h1>Agendar horário</h1>
+
+    <form action="/agendar" method="post">
+
+        <!-- NOME -->
+        <input type="text" name="nome" placeholder="Seu nome" required>
+        <br><br>
+
+        <!-- TELEFONE -->
+        <input type="text" name="telefone" placeholder="Telefone" required>
+        <br><br>
+
+        <!-- SERVIÇO -->
+        <select name="servico" id="servico" required>
+
+    <option value="">Escolha o serviço</option>
+
+    {% for s in servicos %}
+    <option value="{{ s[0] }}"
+        data-preco="{{ s[1] }}"
+        {% if servico_selecionado == s[0] %}selected{% endif %}>
+        {{ s[0] }}
+    </option>
+    {% endfor %}
+
+</select>
+
+        <br><br>
+
+        <!-- PREÇO -->
+        <p id="preco" style="font-size:20px; font-weight:bold; color:#c49a6c;"></p>
+
+        <br>
+
+        <!-- DATA -->
+        <input type="datetime-local" name="data" id="data" required>
+
+        <br><br>
+
+        <button type="submit">Confirmar agendamento</button>
+
+    </form>
+</div>
+
+<!-- 🔥 DADOS DO BACKEND (CORRIGIDO) -->
+<script>
+const datasOcupadas = JSON.parse('{{ datas_ocupadas | tojson | safe }}' || '[]');
+</script>
+
+<!-- 🔥 SCRIPT PRINCIPAL -->
+<script>
+const input = document.getElementById("data");
+const select = document.getElementById("servico");
+
+function atualizarPreco() {
+    let option = select.options[select.selectedIndex];
+    let preco = option.getAttribute("data-preco");
+
+    if (preco) {
+        document.getElementById("preco").innerText = "R$ " + preco;
+    } else {
+        document.getElementById("preco").innerText = "";
+    }
+}
+
+// 🔥 bloqueio de horário
+input.addEventListener("change", function () {
+    let selecionado = input.value;
+
+    if (datasOcupadas.includes(selecionado)) {
+        alert("Esse horário já está ocupado!");
+        input.value = "";
+    }
+});
+
+// inicialização
+window.addEventListener("load", atualizarPreco);
+select.addEventListener("change", atualizarPreco);
+</script>
+
+</body>
+</html>

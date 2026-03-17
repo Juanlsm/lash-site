@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Painel</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<button onclick="window.location.href='/'" class="btn-voltar">
+← Voltar
+</button>
+
+<div class="container">
+    <h1>Painel da Lash Designer</h1>
+
+    <div class="stats">
+        <div class="card-stat">
+            <h2>{{ agendamentos|length }}</h2>
+            <p>Total de Agendamentos</p>
+        </div>
+    </div>
+
+    <h2>Agendamentos</h2>
+
+    {% for a in agendamentos %}
+    <div class="card">
+
+        <p><b>👤 Nome:</b> {{ a[1] }}</p>
+        <p><b>📞 Telefone:</b> {{ a[2] }}</p>
+        <p><b>💅 Serviço:</b> {{ a[3] }}</p>
+        <p><b>📅 Data:</b> {{ a[4] }}</p>
+
+        <a href="/deletar/{{ a[0] }}" onclick="return confirm('Excluir agendamento?')">
+            <button class="btn-excluir">Excluir</button>
+        </a>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+</body>
+</html>
