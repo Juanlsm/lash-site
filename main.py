@@ -9,18 +9,19 @@ from routers import admin
 
 app = FastAPI()
 
+# sessão (login)
 app.add_middleware(SessionMiddleware, secret_key="senha_super_secreta")
 
 # templates
 templates = Jinja2Templates(directory="templates")
 
-# EXEMPLO (se não tiver banco ainda)
+# exemplo de serviços
 lista_servicos = [
     ("1", "Design de sobrancelha", 40),
     ("2", "Design com henna", 50),
 ]
 
-# rota agendamento
+# AGENDAMENTO
 @app.get("/agendamento")
 def agendamento(request: Request, servico: str = None):
     return templates.TemplateResponse("agendamento.html", {
@@ -29,11 +30,12 @@ def agendamento(request: Request, servico: str = None):
         "servico_selecionado": servico
     })
 
-# LOGIN
+# LOGIN PAGE
 @app.get("/login")
 def login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
 
+# LOGIN POST
 @app.post("/login")
 def login(request: Request, senha: str = Form(...)):
     if senha == "1234":
@@ -44,6 +46,12 @@ def login(request: Request, senha: str = Form(...)):
         "request": request,
         "erro": "Senha incorreta"
     })
+
+# LOGOUT (opcional mas top)
+@app.get("/logout")
+def logout(request: Request):
+    request.session.clear()
+    return RedirectResponse("/", status_code=302)
 
 # arquivos estáticos
 app.mount("/static", StaticFiles(directory="static"), name="static")

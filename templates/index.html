@@ -11,14 +11,28 @@ body {
     font-family: Arial;
     background: #f5f5f5;
     text-align: center;
+    margin: 0;
 }
 
-/* TÍTULO */
-h1 {
-    margin-top: 30px;
+/* TOPO */
+.topo {
+    position: relative;
+    padding: 20px;
 }
 
-/* CONTAINER CENTRAL */
+.admin {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: #c8a27a;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* CONTAINER */
 .container {
     width: 800px;
     margin: 40px auto;
@@ -57,6 +71,7 @@ h1 {
     font-weight: bold;
 }
 
+/* BOTÃO */
 .card button {
     background: #c8a27a;
     color: white;
@@ -93,7 +108,14 @@ h1 {
 
 <body>
 
-<h1>Luua Lash Designer</h1>
+<div class="topo">
+    <h1>Luua Lash Designer</h1>
+
+    <!-- BOTÃO ADMIN -->
+    <a href="/admin">
+        <button class="admin">Área da Lash Designer</button>
+    </a>
+</div>
 
 <div class="container">
 
